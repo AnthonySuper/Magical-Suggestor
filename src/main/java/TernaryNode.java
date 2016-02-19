@@ -11,7 +11,6 @@ class TernaryNode<T> {
         if(s.length() == 1) {
             letter = s.charAt(0);
             value = val;
-            return;
         }
         else {
             letter = s.charAt(0);
@@ -49,6 +48,31 @@ class TernaryNode<T> {
                     eq = new TernaryNode<T>(key.substring(1), val);
                 }
             }
+        }
+    }
+
+    public T get(String key) {
+        char c = key.charAt(0);
+        if(c > letter) {
+            if(gt == null) {
+                return null;
+            }
+            return gt.get(key);
+        }
+        else if(c < letter) {
+            if(lt == null) {
+                return null;
+            }
+            return lt.get(key);
+        }
+        else {
+            if(key.length() == 1) {
+                return value;
+            }
+            if(eq == null) {
+                return null;
+            }
+            return eq.get(key.substring(1));
         }
     }
 
