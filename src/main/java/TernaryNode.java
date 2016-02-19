@@ -19,6 +19,38 @@ class TernaryNode<T> {
         }
     }
 
+    public void insert(String key, T val) {
+        if(key.length() == 0) {
+            value = val;
+        }
+        else {
+            char c = key.charAt(0);
+            if(c > letter) {
+                if(gt != null) {
+                    gt.insert(key, val);
+                }
+                else {
+                    gt = new TernaryNode<T>(key, val);
+                }
+            }
+            if(c < letter) {
+                if(lt != null) {
+                    lt.insert(key, val);
+                }
+                else {
+                    lt = new TernaryNode<T>(key, val);
+                }
+            }
+            if(c == letter) {
+                if(eq != null) {
+                    eq.insert(key.substring(1), val);
+                }
+                else {
+                    eq = new TernaryNode<T>(key.substring(1), val);
+                }
+            }
+        }
+    }
 
     protected char letter;
     private T value;
